@@ -9,7 +9,7 @@ const int ANGULO_FINAL = 0;
 // Pines servos
 const int PIN_SERVO_ROJO = 7;
 const int PIN_SERVO_AZUL = 8;
-const int PIN_SERVO_360 = 6; // Asignamos pin 6 para el servo 360°
+const int PIN_SERVO_360 = 6; 
 
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(
   TCS34725_INTEGRATIONTIME_614MS,
@@ -49,8 +49,6 @@ void setup() {
 void loop() {
   unsigned long currentMillis = millis();
 
-  // El servo 360 gira constantemente, no hay que tocarlo aquí
-
   // Chequeo cada 1 segundo (1000 ms)
   if (currentMillis - prevMillis >= 1000) {
     prevMillis = currentMillis;
@@ -60,7 +58,7 @@ void loop() {
 
     String colorDetectado = "Indefinido";
 
-    // Clasificación de color dominante (cambia verde por azul)
+    // Clasificación de color dominante 
     if (r > b && r > g) {
       colorDetectado = "ROJO";
       servoRojo.write(ANGULO_FINAL);  // Mover servo rojo a posición activada
@@ -94,5 +92,4 @@ void loop() {
     }
   }
 
-  // Aquí el loop sigue sin delay para que el servo360 gire sin interrupciones
 }
